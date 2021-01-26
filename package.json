@@ -1,0 +1,21 @@
+{
+  "name": "myapi",
+  "version": "1.0.0",
+  "description": "Esta API permite registrar y solicitar información de nuestros clientes actuales. ",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "author": "NEWTON ANGEL HUAMANÑAHUI ROBLES",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
