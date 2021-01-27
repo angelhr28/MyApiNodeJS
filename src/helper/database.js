@@ -1,6 +1,12 @@
-const { Client } = require('pg');
+// const { Client } = require('pg');
 
-const client = new Client({
+var bluebird = require('bluebird');
+const pgp = require('pg-promise')({
+    promiseLib: bluebird
+});
+
+
+const client = pgp({
     host: "localhost",
     port: 5432,
     user: "postgres",
@@ -8,12 +14,6 @@ const client = new Client({
     database: "tech"
 })
 
-client.on("connect", ()=> {
-    console.log("DataBase Connection");
-})
 
-client.on("end", ()=> {
-    console.log("Connection end");
-})
 
 module.exports = client;

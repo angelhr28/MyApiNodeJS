@@ -1,9 +1,11 @@
-
+const MClient = require('./m_client');
 
 async function getListClient(req, res){
     try {
-        res.status(200).send({"title": "Hello getListClient"});
+        let result = await MClient.getListClient();
+        res.status(200).send(result);
     } catch(err){
+        console.log(err)
         res.status(500).send(err);
     }
 } 

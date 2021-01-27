@@ -5,6 +5,6 @@ const controller = require('./c_client')
     router
     .get('/getListClient', controller.getListClient)
     .get('/getKpideClient', controller.getKpideClient)
-    .get('/createClient', controller.createClient)
+    .post('/createClient', controller.createClient)
 
 module.exports = router;
