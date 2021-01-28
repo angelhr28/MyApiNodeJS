@@ -1,5 +1,10 @@
 const MClient = require('./m_client');
 
+/**
+ * Lista a todos los clientes registrados dentro de la empresa, ademas de una fecha estimadad de su muerte respectiva
+ *
+ * returns List
+ **/
 async function getListClient(req, res){
     try {
         let result = await MClient.getListClient();
@@ -10,6 +15,11 @@ async function getListClient(req, res){
     }
 } 
 
+/**
+ * Obtendremos el promedio de edades de los clientes registrados y su respectiva desviacion standart para su evaluacion
+ *
+ * returns Object
+ **/
 async function getKpideClient(req, res){
     try {
         let result = await MClient.getKpideClient();
@@ -19,6 +29,12 @@ async function getKpideClient(req, res){
     }
 } 
 
+/**
+ * Permite registrar los datos de un nuevo cliente interesado en la empresa.
+ *
+ * createClient Registrar los datos de un nuevo cliente interesado en la empresa.
+ * returns Object
+ **/
 async function createClient(req, res){
     try {
         let name     = req.body.name_pers;
@@ -37,6 +53,12 @@ async function createClient(req, res){
     }
 } 
 
+
+/**
+ * Validacion de elementos enviados por el request, en caso sea vacio, null, o undefine retornara una reject al front
+ *
+ * returns Object
+ **/
 global.__isNull = function (value, msj = {status: 400 , msj:'Accion no permitida'}) {
     if (typeof value == 'object' && value != null) {
         for (var elm of value) {

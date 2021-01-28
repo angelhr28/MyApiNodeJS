@@ -2,6 +2,12 @@
 
 const dbp = require('../helper/database');
 
+/**
+ * Consulta a la tabla cliente que retornara la lista de clientes registrados 
+ * obteniedo los datos del cliente y su fecha de defuncion aproximada.
+ *
+ * returns List
+ **/
 function getListClient(){
     return new Promise((resolve, reject) => {
         let sql = `SELECT id_client,
@@ -20,10 +26,11 @@ function getListClient(){
     })
 } 
 
-// Promedio edad entre todos los clientes​
-// Desviación estándar entre las edades de todos los clientes​
-
-
+/**
+ * Consulta a la tabla cliente que retornara el promedio y la desviacion standart general
+ *
+ * returns Object
+ **/
 function getKpideClient(){
     return new Promise((resolve, reject) => {
         let sql = `SELECT ROUND(AVG(edad_client), 2) AS prom_edad,
@@ -37,6 +44,11 @@ function getKpideClient(){
     })
 } 
 
+/**
+ * Ingreso de un nuevo cliente a la tabla cliente de los datos respectivos.
+ *
+ * returns Object
+ **/
 function createClient(name, ape, edad, fechaNac){
     return new Promise((resolve, reject) => {
         let sql = `SELECT * FROM __create_client_01($1, $2, $3, $4) AS res;`
@@ -58,21 +70,3 @@ module.exports = {
     getKpideClient,
     createClient
 };
-
-
-
-
-// CREATE SEQUENCE cliente_id_client_seq;
-
-
-// CREATE TABLE cliente
-// (
-//     id_client integer NOT NULL DEFAULT nextval('cliente_id_client_seq'),
-//     name_client character varying(300) NOT NULL DEFAULT '',
-//     ape_client character varying(300) NOT NULL  DEFAULT '',
-//     fec_naci date DEFAULT now(),
-//     edad_client integer NOT NULL  DEFAULT 0,
-//     CONSTRAINT id_client PRIMARY KEY (id_client)
-// )
-
-// select * from cliente;

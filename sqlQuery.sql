@@ -1,5 +1,8 @@
+-- CREACION DE SEQUENCE PARA UN AUTOINCREMENT
+
 CREATE SEQUENCE cliente_id_client_seq;
 
+-- CREACION DE TABLA QUE ALMACENARA DATOS
 
 CREATE TABLE cliente
 (
@@ -10,6 +13,8 @@ CREATE TABLE cliente
     edad_client integer NOT NULL  DEFAULT 0,
     CONSTRAINT id_client PRIMARY KEY (id_client)
 )
+
+-- CREACION DE FUNCION QUE VALIDARA EL REGISTRO DE UN CLIENTE NUEVO
 
 CREATE OR REPLACE FUNCTION __create_client_01(
 	__p_name_cli character varying(300),
