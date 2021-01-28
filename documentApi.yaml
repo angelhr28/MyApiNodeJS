@@ -13,7 +13,7 @@ info:
     name: postgreSQL 12
     url: https://www.postgresql.org
 paths: 
-
+  
   /creacliente:
     post:
       description: Permite registrar los datos de un nuevo cliente interesado en la empresa.
