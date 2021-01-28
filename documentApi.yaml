@@ -1,11 +1,10 @@
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: My Company API
+  title: My Api NodeJS
   description: >-
     Esta API permite registrar y solicitar información de nuestros clientes
     actuales. 
-  termsOfService: https:localhost/terms
   contact:
     name: Newton Angel Huamanñahui Robles
     url: https://github.com/angelhr28
@@ -14,7 +13,7 @@ info:
     name: postgreSQL 12
     url: https://www.postgresql.org
 paths: 
-  
+
   /creacliente:
     post:
       description: Permite registrar los datos de un nuevo cliente interesado en la empresa.
@@ -25,44 +24,60 @@ paths:
           schema:
             type: object
             properties:
-              nombre:
+              name_pers:
                 type: string
                 description: Nombre del cliente
                 example: 'Angel'
-              apellido:
+              ape_pers:
                 type: string
                 description: Apellido del cliente
                 example: 'Robles'
-              edad: 
+              edad_pers: 
                 type: integer
                 description: Edad del cliente
                 example: 22
-              fecha_nac:
+              fech_nac:
                 type: string
                 description: Fecha de nacimiento del cliente
                 example: '28-04-1999'
       responses:
         200:
-          description: Successfull request
+          description: Ejecucion correcta
           content:
             application/json:
               schema:
                 type: object
-                example: {"message": "Cliente registrado correctamente."}
+                example: {
+                  "status" : 200,
+                  "msj": "Cliente registrado correctamente."
+                }
         400:
-          description: Request not found
+          description: Errores controlados
           content:
             application/json:
               schema:
                 type: object
-                example: {"message": "Error 400. Page or Request not found."}
+                example: {
+                  "status" : 400,
+                  "msj"    : "Accion no permitida."
+                }
+        500:
+          description: Errores desconocidos
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {
+                  "status" : 500,
+                  "msj"    : "Ocurrio un error."
+                }
         
   /kpideclientes:
     get:
       description: Obtendremos el promedio de edades de los clientes registrados y sus respectiva desviacion standart para su evaluacion
       responses:
         200:
-          description: Successfull request
+          description: Ejecucion correcta
           content:
             application/json:
               schema:
@@ -71,57 +86,86 @@ paths:
                   prom_edad:
                     type: integer
                     example: 25
-                  desv_std:
+                  desv_stand:
                     type: number
                     format: float
                     example: 22.5
         400:
-          description: Request not found
+          description: Errores controlados
           content:
             application/json:
               schema:
                 type: object
-                example: {"message": "Errpr 400. Page or Request not found."}
-                
+                example: {
+                  "status" : 400,
+                  "msj"    : "Accion no permitida."
+                }
+        500:
+          description: Errores desconocidos
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {
+                  "status" : 500,
+                  "msj"    : "Ocurrio un error."
+                }
+                       
   /listclientes:
     get:
       description: Lista a todos los clientes registrados dentro de la empresa, ademas de una fecha estimadad de su muerte respectiva
       responses:
         200:
-          description: Successfull request
+          description: Ejecucion correcta
           content:
             application/json:
               schema:
                 type: array
                 items:
                   properties:
-                    id:
+                    id_client:
                       type: integer
                       example: 1
-                    nombre:
+                    name_client:
                       type: string
                       description: Nombre del cliente
                       example: 'Angel'
-                    apellido:
+                    ape_client:
                       type: string
                       description: Apellido del cliente
                       example: 'Robles'
-                    edad: 
+                    edad_client: 
                       type: integer
                       description: Edad del cliente
                       example: 22
-                    fecha_nac:
+                    fecha_naci:
                       type: string
                       description: Fecha de nacimiento del cliente
-                      example: '28-04-1999'
+                      example: 'APRI 28 1999'
+                    fecha_mortalidad:
+                      type: string
+                      description: Fecha de nacimiento del cliente
+                      example: 'APRI 28 2080'
         400:
-          description: Request not found
+          description: Errores controlados
           content:
             application/json:
               schema:
                 type: object
-                example: {"message": "Errpr 400. Page or Request not found."}
-
+                example: {
+                  "status" : 400,
+                  "msj"    : "Accion no permitida."
+                }
+        500:
+          description: Errores desconocidos
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {
+                  "status" : 500,
+                  "msj"    : "Ocurrio un error."
+                }
 servers:
-  - description: My company Server API 
-    url: https://virtserver.swaggerhub.com/angelhr28/MyCompany/1.0.0
+  - description: My Server API 
+    url: https://myapinodejs.uc.r.appspot.com
