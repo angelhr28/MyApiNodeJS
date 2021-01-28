@@ -11,7 +11,7 @@ const client = pgp({
     port: 5432,
     user: "postgres",
     password: "nino3667193",
-    database: "tech"
+    database: "prueba"
 })
 
 
