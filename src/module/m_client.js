@@ -39,7 +39,7 @@ function getKpideClient(){
         dbp.one(sql).then( result => {
             return resolve(result)
         }).catch( err => {
-            return reject(err);
+            return reject({ msj: err,  status: 500 });  // Desconocido
         }).finally(dbp.end);
     })
 } 
@@ -54,13 +54,12 @@ function createClient(name, ape, edad, fechaNac){
         let sql = `SELECT * FROM __create_client_01($1, $2, $3, $4) AS res;`
         
         dbp.one(sql, [name, ape, fechaNac, edad]).then( result => {
-            console.log("retorno estoooo ", result.res)
             result = result.res;
             if (result.status == 2) return reject({ msj: result.msj, stack_error : result.stack_error }); // Desconocido
             if (result.status == 1) return reject({ msj: result.msj,  status     : 400 });  // Controlado
             return resolve(result)
         }).catch( err => {
-            return reject(err);
+            return reject({ msj: err,  status: 500 });  // Desconocido
         }).finally(dbp.end);
     })
 } 

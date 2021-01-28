@@ -11,7 +11,7 @@ async function getListClient(req, res){
         res.status(200).send(result);
     } catch(err){
         console.log(err)
-        res.status(500).send(err);
+        res.status(err.status).send(err);
     }
 } 
 
@@ -25,6 +25,7 @@ async function getKpideClient(req, res){
         let result = await MClient.getKpideClient();
         res.status(200).send(result);
     } catch(err){
+        console.log('error', err)
         res.status(err.status).send(err);
     }
 } 
@@ -48,7 +49,6 @@ async function createClient(req, res){
         console.log(result)
         res.status(200).send(result);
     } catch(err){
-        console.log("ERROR ::: ", err)
         res.status(err.status).send(err);
     }
 } 

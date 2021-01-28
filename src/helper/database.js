@@ -4,7 +4,7 @@ const pgp = require('pg-promise')({
 });
 
 const client = pgp({
-    host: "localhost",
+    host: "/cloudsql/myapinodejs:us-central1:prueba", //"localhost"
     port: 5432,
     user: "postgres",
     password: "nino3667193",

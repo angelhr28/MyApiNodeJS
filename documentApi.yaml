@@ -1,0 +1,127 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: My Company API
+  description: >-
+    Esta API permite registrar y solicitar información de nuestros clientes
+    actuales. 
+  termsOfService: https:localhost/terms
+  contact:
+    name: Newton Angel Huamanñahui Robles
+    url: https://github.com/angelhr28
+    email: angelhuamannahui@gmail.com
+  license:
+    name: postgreSQL 12
+    url: https://www.postgresql.org
+paths: 
+  
+  /creacliente:
+    post:
+      description: Permite registrar los datos de un nuevo cliente interesado en la empresa.
+      parameters:
+        - name: creacliente
+          in: query
+          description: Registrar los datos de un nuevo cliente interesado en la empresa.
+          schema:
+            type: object
+            properties:
+              nombre:
+                type: string
+                description: Nombre del cliente
+                example: 'Angel'
+              apellido:
+                type: string
+                description: Apellido del cliente
+                example: 'Robles'
+              edad: 
+                type: integer
+                description: Edad del cliente
+                example: 22
+              fecha_nac:
+                type: string
+                description: Fecha de nacimiento del cliente
+                example: '28-04-1999'
+      responses:
+        200:
+          description: Successfull request
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {"message": "Cliente registrado correctamente."}
+        400:
+          description: Request not found
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {"message": "Error 400. Page or Request not found."}
+        
+  /kpideclientes:
+    get:
+      description: Obtendremos el promedio de edades de los clientes registrados y sus respectiva desviacion standart para su evaluacion
+      responses:
+        200:
+          description: Successfull request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  prom_edad:
+                    type: integer
+                    example: 25
+                  desv_std:
+                    type: number
+                    format: float
+                    example: 22.5
+        400:
+          description: Request not found
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {"message": "Errpr 400. Page or Request not found."}
+                
+  /listclientes:
+    get:
+      description: Lista a todos los clientes registrados dentro de la empresa, ademas de una fecha estimadad de su muerte respectiva
+      responses:
+        200:
+          description: Successfull request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    nombre:
+                      type: string
+                      description: Nombre del cliente
+                      example: 'Angel'
+                    apellido:
+                      type: string
+                      description: Apellido del cliente
+                      example: 'Robles'
+                    edad: 
+                      type: integer
+                      description: Edad del cliente
+                      example: 22
+                    fecha_nac:
+                      type: string
+                      description: Fecha de nacimiento del cliente
+                      example: '28-04-1999'
+        400:
+          description: Request not found
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {"message": "Errpr 400. Page or Request not found."}
+
+servers:
+  - description: My company Server API 
+    url: https://virtserver.swaggerhub.com/angelhr28/MyCompany/1.0.0
